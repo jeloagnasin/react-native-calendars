@@ -82,7 +82,9 @@ export default class AgendaView extends Component {
     /** Set this true while waiting for new data from a refresh. */
     refreshing: PropTypes.bool,
     /** Display loading indicador. Default = false */
-    displayLoadingIndicator: PropTypes.bool
+    displayLoadingIndicator: PropTypes.bool,
+    /** Disable calendar. Default = false */
+    disableCalendar: PropTypes.bool
   };
 
   constructor(props) {
@@ -390,6 +392,16 @@ export default class AgendaView extends Component {
       knob = this.state.calendarScrollable ? null : (
         <View style={this.styles.knobContainer}>
           <View ref={(c) => this.knob = c}>{knobView}</View>
+        </View>
+      );
+    }
+
+    if (this.props.disableCalendar) {
+      return (
+        <View onLayout={this.onLayout} style={[this.props.style, {flex: 1, overflow: 'hidden'}]}>
+          <View style={this.styles.reservations}>
+            {this.renderReservations()}
+          </View>
         </View>
       );
     }
