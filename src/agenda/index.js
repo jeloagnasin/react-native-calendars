@@ -304,6 +304,8 @@ export default class AgendaView extends Component {
   }
 
   onDayChange(day) {
+    if (this.props.disableCalendar) return;
+
     const newDate = parseDate(day);
     const withAnimation = dateutils.sameMonth(newDate, this.state.selectedDay);
     
@@ -399,7 +401,7 @@ export default class AgendaView extends Component {
     if (this.props.disableCalendar) {
       return (
         <View onLayout={this.onLayout} style={[this.props.style, {flex: 1, overflow: 'hidden'}]}>
-          <View style={this.styles.reservations}>
+          <View style={[this.styles.reservations, { marginTop: 0 }]}>
             {this.renderReservations()}
           </View>
         </View>
