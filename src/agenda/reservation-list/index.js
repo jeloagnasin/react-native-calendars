@@ -206,6 +206,7 @@ class ReactComp extends Component {
         refreshControl={this.props.refreshControl}
         refreshing={this.props.refreshing || false}
         onRefresh={this.props.onRefresh}
+        ListEmptyComponent={this.props.renderEmptyData}
       />
     );
   }
